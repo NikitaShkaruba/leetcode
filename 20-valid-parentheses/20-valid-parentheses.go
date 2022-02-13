@@ -2,8 +2,8 @@ func isValid(s string) bool {
   stack := make([]rune, 0)
   m := map[rune]rune {
     ')': '(',
-    ']': '[',
     '}': '{',
+    ']': '[',
   }
   
   for _, c := range s {
