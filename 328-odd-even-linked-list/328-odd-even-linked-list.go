@@ -10,8 +10,10 @@ func oddEvenList(head *ListNode) *ListNode {
 		return head
 	}
 
-	odd, even, evenHead := head, head.Next, head.Next
-
+  odd := head
+  even := head.Next
+  evenHead := head.Next
+  
 	for even != nil && even.Next != nil {
 		odd.Next = odd.Next.Next
 		even.Next = even.Next.Next
