@@ -9,6 +9,7 @@
      
   Solutions:
     - Brute force: O(n^2) time, O(1) space
+    - Two pointers: O(n) time, O(1) space
   
   Testing grounds:
     - [1, 8, 6, 2, 5, 4, 8, 3, 7]
