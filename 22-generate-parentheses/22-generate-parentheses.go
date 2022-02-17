@@ -19,6 +19,7 @@
   
   f(1, 0, "")
 */
+
 func generateParenthesis(n int) []string {
 	return genHelper(n, 0, []byte{}, make([]string, 0))
 }
