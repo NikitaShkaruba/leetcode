@@ -26,10 +26,7 @@ func generateParenthesis(n int) []string {
 }
 
 func genHelper(toOpen int, toClose int, curSequence []byte, result []string) []string {
-	if toOpen == 0 {
-		for i := 0; i < toClose; i++ {
-			curSequence = append(curSequence, ')')
-		}
+	if toOpen == 0 && toClose == 0 {
 		result = append(result, string(curSequence))
 		return result
 	}
