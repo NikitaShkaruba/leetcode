@@ -31,7 +31,7 @@ func middleNode(head *ListNode) *ListNode {
   
   var middleIndex int
   if nodesAmount % 2 == 0 {
-    middleIndex = int(nodesAmount / 2)
+    middleIndex = nodesAmount / 2
   } else {
     middleIndex = int(math.Floor(float64(nodesAmount / 2)))
   }
