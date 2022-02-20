@@ -9,6 +9,7 @@
 /*
 
   Solutions:
+    1. Brute force: O(n) time, O(1) space
   
   Test cases:
     - 1 -> 2 : 1 -> 2
