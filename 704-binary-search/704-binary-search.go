@@ -18,7 +18,7 @@ func search(nums []int, target int) int {
   r := len(nums) - 1
   
   for l <= r {
-    m := int(math.Floor(float64((r + l)) / 2))
+    m := (r + l) / 2
              
     if nums[m] == target {
       return m
