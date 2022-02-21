@@ -53,11 +53,9 @@ func nextGreatestLetter(letters []byte, target byte) byte {
   // - when we were hitting equals all the time, getting `left = middle + 1` and got to the last element - we need to wrap. E.g. E.g. {[1, 2, 3, 4, 5, 6, 7], 8}
   //
   // If we've gotten at least once to the `right = middle` result, we'll always find the greater target.
-  if letters[left] > target {
-    return letters[left]
-  } else {
+  if letters[left] <= target {
     return letters[0]
   }
   
-  
+  return letters[left]  
 }
