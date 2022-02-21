@@ -2,7 +2,7 @@
 
   Solutions:
     1. Brute force: O(n) time, O(1) space
-    2. Binary search: O(logn) time, O(1) space
+    2. Binary search: Avg: {O(logn) time, O(1) space}, Worst: {O(n) time, O(1) space}
   
   Test cases:
     letters = ["c","f","j"], target = "a" : c
@@ -48,9 +48,16 @@ func nextGreatestLetter(letters []byte, target byte) byte {
     }
   }
 
+  // The only way when we return letters[0] is when either we:
+  // - we were hitting equals all the time and got to the end - we need to wrap. E.g. {[1, 2, 3, 4, 5, 5, 5, 5, 5, 5], 5}
+  // - when we were hitting equals all the time, getting `left = middle + 1` and got to the last element - we need to wrap. E.g. E.g. {[1, 2, 3, 4, 5, 6, 7], 8}
+  //
+  // If we've gotten at least once to the `right = middle` result, we'll always find the greater target.
   if letters[left] > target {
     return letters[left]
   } else {
     return letters[0]
   }
+  
+  
 }
