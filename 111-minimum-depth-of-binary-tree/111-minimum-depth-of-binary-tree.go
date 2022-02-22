@@ -11,6 +11,7 @@
   
   Solutions:
     1. DFS: O(n) time, O(logn) space
+    2. BFS: O(n) time, O(logn) space. Will be faster on not balanced trees
   
   Test cases:
     1. [3,9,20,null,null,15,7] : 2
