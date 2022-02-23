@@ -63,10 +63,10 @@ func findPath(node, p, q *TreeNode, path, pPath, qPath []*TreeNode) ([]*TreeNode
 }
 
 func copyPathSlice(path []*TreeNode) []*TreeNode {
-  result := make([]*TreeNode, 0, len(path))
+  result := make([]*TreeNode, len(path))
   
-  for _, p := range path {
-    result = append(result, p)
+  for i, p := range path {
+    result[i] = p
   }
   
   return result
