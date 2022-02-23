@@ -10,7 +10,7 @@
 /*
   
   Solutions:
-    - DFS with remembering path: O(n) time, O(n) space
+    - Binary Search Tree traverse: O(logn) time, O(logn) space
   
   Test cases:
     - root = [6,2,8,0,4,7,9,null,null,3,5], p = 2, q = 4
@@ -22,57 +22,18 @@
 */
 
 func lowestCommonAncestor(root, p, q *TreeNode) *TreeNode {
-  pPath, qPath := findPath(root, p, q, []*TreeNode{}, nil, nil)
-  
-  for len(pPath) != len(qPath) {
-    if len(pPath) > len(qPath) {
-      pPath = pPath[:len(pPath)-1]
-    } else {
-      qPath = qPath[:len(qPath)-1]
-    }  
+  if root == p || root == q {
+    return root
   }
   
-  for pPath[len(pPath)-1] != qPath[len(qPath)-1] {
-    pPath = pPath[:len(pPath)-1]
-    qPath = qPath[:len(qPath)-1]
+  if root.Val > p.Val && root.Val > q.Val {
+    return lowestCommonAncestor(root.Left, p, q)  
+  } else if root.Val < p.Val && root.Val < q.Val {
+    return lowestCommonAncestor(root.Right, p, q)  
+  } else {
+    return root
   }
-  
-  return pPath[len(pPath)-1]
 }
-
-func findPath(node, p, q *TreeNode, path, pPath, qPath []*TreeNode) ([]*TreeNode, []*TreeNode) {
-  if node == nil {
-    return pPath, qPath
-  }
-  if pPath != nil && qPath != nil {
-    return pPath, qPath
-  }
-  
-  path = append(path, node)
-  
-  if node == p && pPath == nil {
-    pPath = copyPathSlice(path)
-  } else if node == q && qPath == nil {
-    qPath = copyPathSlice(path)
-  }
-  
-  pPath, qPath = findPath(node.Left, p, q, path, pPath, qPath)
-  pPath, qPath = findPath(node.Right, p, q, path, pPath, qPath)
-  
-  return pPath, qPath
-}
-
-func copyPathSlice(path []*TreeNode) []*TreeNode {
-  result := make([]*TreeNode, len(path))
-  
-  for i, p := range path {
-    result[i] = p
-  }
-  
-  return result
-} 
-
-
 
 
 
