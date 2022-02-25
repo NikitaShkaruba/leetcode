@@ -5,6 +5,7 @@
     2. Seen set in nums: O(n) time, O(1) space, but modifies the input array
     3. Double iteration: O(n^2) time, O(1) space
     4. Double iteration with Binary search: O(n^2) time, O(1) space
+    5. Tortoise and hare: O(n) time, O(1) space
   
   Test cases:
     - [1,3,4,2,2]: 2
