@@ -30,14 +30,13 @@
 */
 
 func setZeroes(matrix [][]int) {
-  // Understand
+  // Store facts that the furst service row and column needs to be zeroed
   firstColumnNeedsZeroing := false
   for i := 0; i < len(matrix) && !firstColumnNeedsZeroing; i++ {
     if matrix[i][0] == 0 {
       firstColumnNeedsZeroing = true
     }
   }
-  
   firstRowNeedsZeroing := false
   for j := 0; j < len(matrix[0]) && !firstRowNeedsZeroing; j++ {
     if matrix[0][j] == 0 {
@@ -55,7 +54,7 @@ func setZeroes(matrix [][]int) {
     }
   }
 
-  // Iterate over stored facts of the rows, and set them to zeroes
+  // Iterate over stored facts of the rows and columns, and set them to zeroes
   for i := 1; i < len(matrix); i++ {
     if matrix[i][0] == 0 {
       for j := 1; j < len(matrix[0]); j++ {
@@ -63,8 +62,6 @@ func setZeroes(matrix [][]int) {
       }
     }
   }
-  
-  // Iterate over stored facts of the columns, and set them to zeroes
   for j := 1; j < len(matrix[0]); j++ {
     if matrix[0][j] == 0 {
       for i := 1; i < len(matrix); i++ {
