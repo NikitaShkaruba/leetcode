@@ -36,11 +36,11 @@ type TrieNode struct {
 }
 
 type Trie struct {
-  root TrieNode
+  root *TrieNode
 }
 
 func (t *Trie) insert(word string) {
-  node := &t.root
+  node := t.root
   
   for _, b := range []byte(word) {
     if _, contains := node.children[b]; !contains {
@@ -50,14 +50,14 @@ func (t *Trie) insert(word string) {
     node = node.children[b]
   }
   
-  // Mark as the end of word
+  // Mark the end of the word
   if _, contains := node.children['*']; !contains {
     node.children['*'] = &TrieNode{ children: make(map[byte]*TrieNode) }
   }
 }
 
 func (t *Trie) find(word string) bool {
-  node := &t.root
+  node := t.root
   
   for _, b := range []byte(word) {
     if _, contains := node.children[b]; !contains {
@@ -67,6 +67,7 @@ func (t *Trie) find(word string) bool {
     node = node.children[b]
   }
   
+  // We we want only fully included words, not their parts
   if _, contains := node.children['*']; contains {
     return true
   }
@@ -75,13 +76,12 @@ func (t *Trie) find(word string) bool {
 }
 
 func indexPairs(text string, words []string) [][]int {
-  trie := Trie{ root: TrieNode{ children: make(map[byte]*TrieNode) } }
+  trie := Trie{ root: &TrieNode{ children: make(map[byte]*TrieNode) } }
   for _, w := range words {
     trie.insert(w)
   }
   
   pairs := [][]int{}
-  
   for i := 0; i < len(text); i++ {
     for j := i + 1; j <= len(text); j++ {
       if trie.find(text[i:j]) {
@@ -92,20 +92,3 @@ func indexPairs(text string, words []string) [][]int {
   
   return pairs
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
