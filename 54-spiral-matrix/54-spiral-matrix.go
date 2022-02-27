@@ -30,6 +30,7 @@
        [ 9, 10, 11, 12]]
        
 */
+
 func spiralOrder(matrix [][]int) []int {
   matrixLen := len(matrix) * len(matrix[0])
   result := make([]int, 0, matrixLen)
@@ -64,7 +65,7 @@ func getNextIndex(i, j, direction int) (int, int) {
   case 2:
     return i, j - 1
   case 3:
-    return i-1, j
+    return i - 1, j
   default:
     return 0, 0
   }
@@ -77,18 +78,3 @@ func switchDirection(direction int) int {
   
   return direction + 1
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
