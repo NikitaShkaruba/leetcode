@@ -2,7 +2,8 @@
 
   Solutions:
     - Brute force: O(a lot) time, O(a lot) space
-    - DFS: O(n*4^l) time, O(l) space
+    - Backtracking: O(n*3^l) time, O(l) space. If you want to have lock-free algorithm, use a separate seen hashset
+    - Backtracking + Pruning (caching the incorrect paths): O(n*3^l) time, O(l + n) space. This might perform better on a very large boards and words
   
   Test cases:
     - [["A","B","C","E"],["S","F","C","S"],["A","D","E","E"]], word = "ABCCED"
@@ -13,11 +14,6 @@
 
 */
 
-type IndexesPair struct {
-  i int
-  j int
-}
-
 func exist(board [][]byte, word string) bool {
   for i := range board {
     for j := range board[i] {
@@ -25,8 +21,7 @@ func exist(board [][]byte, word string) bool {
         continue
       }
       
-      seen := make(map[IndexesPair]struct{})
-      if dfs(i, j, board, word, seen) {
+      if backtrack(i, j, board, word) {
         return true
       }
     }
@@ -35,7 +30,11 @@ func exist(board [][]byte, word string) bool {
   return false
 }
 
-func dfs(i int, j int, board [][]byte, word string, seen map[IndexesPair]struct{}) bool {
+func backtrack(i int, j int, board [][]byte, word string) bool {
+  if len(word) == 0 {
+    return true
+  }
+  
   if i < 0 || i >= len(board) || j < 0 || j >= len(board[0]) {
     return false
   }
@@ -44,22 +43,14 @@ func dfs(i int, j int, board [][]byte, word string, seen map[IndexesPair]struct{
     return false
   }
   
-  ijPair := IndexesPair{i, j}
-  if _, exists := seen[ijPair]; exists {
-    return false
-  }
-  seen[ijPair] = struct{}{}
+  board[i][j] = '#'
   
-  if len(word) - 1 == 0 {
-    return true
-  }
+  wasFound := backtrack(i-1, j, board, word[1:]) ||
+              backtrack(i+1, j, board, word[1:]) ||
+              backtrack(i, j+1, board, word[1:]) ||
+              backtrack(i, j-1, board, word[1:])
   
-  wasFound := dfs(i-1, j, board, word[1:], seen) ||
-              dfs(i+1, j, board, word[1:], seen) ||
-              dfs(i, j+1, board, word[1:], seen) ||
-              dfs(i, j-1, board, word[1:], seen)
-  
-  delete(seen, ijPair)
+  board[i][j] = word[0]
   
   return wasFound
 }
