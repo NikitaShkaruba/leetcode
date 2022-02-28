@@ -39,7 +39,7 @@ func backtrack(i int, j int, board [][]byte, word string) bool {
     return false
   }
 
-  // Will allways fail for '#'
+  // Will always fail for '#'
   if board[i][j] != word[0] {
     return false
   }
