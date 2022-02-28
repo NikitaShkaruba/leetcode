@@ -2,7 +2,7 @@
 
   Solutions:
     - Brute force: O(a lot) time, O(a lot) space
-    - Backtracking: O(n*3^l) time, O(l) space. If you want to have lock-free algorithm, use a separate seen hashset
+    - Backtracking: O(n*3^l) time, O(l) space. If you want to have lock-free algorithm, use a separate visited hashset
     - Backtracking + Pruning (caching the incorrect paths): O(n*3^l) time, O(l + n) space. This might perform better on a very large boards and words
   
   Test cases:
@@ -39,10 +39,12 @@ func backtrack(i int, j int, board [][]byte, word string) bool {
     return false
   }
 
+  // Will allways fail for '#'
   if board[i][j] != word[0] {
     return false
   }
   
+  // Mark as visited. The problem description says that only letters are provided, '#' is not a letter.
   board[i][j] = '#'
   
   wasFound := backtrack(i-1, j, board, word[1:]) ||
