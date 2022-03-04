@@ -47,7 +47,6 @@
     
     output:   [[],[4],[4,4],[4,4,4],[4,4,4,1],[1],[4,1],[4,4,1],[4,4,4,1],[4,4,4,1,1]]
     expected: [[],[1],[1,4],[1,4,4],[1,4,4,4],[1,4,4,4,4],[4],[4,4],[4,4,4],[4,4,4,4]]
-    
 */
 
 func subsetsWithDup(nums []int) [][]int {
@@ -69,12 +68,12 @@ func subsetsWithDup(nums []int) [][]int {
       curSubsetsLen := len(subsets)
       for j := jStart; j < curSubsetsLen; j++ {
         newSubset := make([]int, len(subsets[j]), len(subsets[j])+1)
-				copy(newSubset, subsets[j])
-				newSubset = append(newSubset, num)
+        copy(newSubset, subsets[j])
+        newSubset = append(newSubset, num)
         
-				subsets = append(subsets, newSubset)
+        subsets = append(subsets, newSubset)
         
-				jStart++
+        jStart++
       }
     }
   }
