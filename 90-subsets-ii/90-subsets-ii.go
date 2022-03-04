@@ -2,7 +2,7 @@
 
   Solutions:
     - Sort + add incrementally + hashset: O(n^2 * 2^n) time, O(2^n) space
-    - Precompute amounts + add intcrementally: O(n * 2^n) time, O(2^n) space
+    - Precompute amounts + add intcrementally: O(n^2 * 2^n) time, O(2^n) space
   
   Test caes:
     - [2,2,1] : [[],[1],[1,2],[1,2,2],[2],[2,2]]
@@ -63,17 +63,17 @@ func subsetsWithDup(nums []int) [][]int {
     []int{},
   }
   for num, cnt := range numCounts {
-    subsetsIndex := 0
+    jStart := 0
     for i := 0; i < cnt; i++ {
-      subsetsCapturedSize := len(subsets)
-      for j := subsetsIndex; j < subsetsCapturedSize; j++ {
+      curSubsetsLen := len(subsets)
+      for j := jStart; j < curSubsetsLen; j++ {
         newSubset := make([]int, len(subsets[j]), len(subsets[j])+1)
 				copy(newSubset, subsets[j])
 				newSubset = append(newSubset, num)
         
 				subsets = append(subsets, newSubset)
         
-				subsetsIndex++
+				jStart++
       }
     }
   }
