@@ -75,8 +75,8 @@ func backtrack(numAmounts map[int]int, perm []int, finishedPermLen int, res *[][
     return
   }
 
-  for num, amount := range numAmounts {
-    if amount == 0 {
+  for num := range numAmounts {
+    if numAmounts[num] == 0 {
       continue
     }
 
