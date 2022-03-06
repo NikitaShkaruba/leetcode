@@ -1,7 +1,7 @@
 /*
   
   Solutions:
-    - Backtracking: O(n^k) time, O(k) space, without the resulted array space
+    - Backtracking: O(n^k) time, O(n^k) space, without the resulted array space
   
   Test cases:
     - 4, 2: [[2,4],[3,4],[2,3],[1,2],[1,3],[1,4]]
