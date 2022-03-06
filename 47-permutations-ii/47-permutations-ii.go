@@ -52,36 +52,36 @@
 */
 
 func permuteUnique(nums []int) [][]int {
-  numAmounts := make(map[int]int)
-  for _, v := range nums {
-    if _, ok := numAmounts[v]; !ok {
-      numAmounts[v] = 0
-    }
-    
-    numAmounts[v]++
-  }
+	numAmounts := make(map[int]int)
+	for _, v := range nums {
+		if _, ok := numAmounts[v]; !ok {
+			numAmounts[v] = 0
+		}
+
+		numAmounts[v]++
+	}
 
 	res := make([][]int, 0)
-  backtrack(numAmounts, []int{}, len(nums), &res)
+	backtrack(numAmounts, []int{}, len(nums), &res)
 
 	return res
 }
 
 func backtrack(numAmounts map[int]int, perm []int, finishedPermLen int, res *[][]int) {
 	if len(perm) == finishedPermLen {
-    permCopy := make([]int, len(perm))
-    copy(permCopy, perm)
+		permCopy := make([]int, len(perm))
+		copy(permCopy, perm)
 		*res = append(*res, permCopy)
 		return
 	}
 
 	for num, amount := range numAmounts {
-    if amount == 0 {
-      continue
-    }
-    
-    numAmounts[num]--
-    backtrack(numAmounts, append(perm, num), finishedPermLen, res)
-    numAmounts[num]++
+		if amount == 0 {
+			continue
+		}
+
+		numAmounts[num]--
+		backtrack(numAmounts, append(perm, num), finishedPermLen, res)
+		numAmounts[num]++
 	}
 }
