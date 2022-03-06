@@ -39,49 +39,36 @@
     - 4321
     
     2314
+    
 */
 func combine(n int, k int) [][]int {
-  nums := make([]int, n)
+  nums := make([]int, 0, n)
   for i := 1; i <= n; i++ {
-    nums[i-1] = i
+    nums = append(nums, i)
   }
   
-  cur := make([]int, 0, k)
+  comb := make([]int, 0, k)
   res := [][]int{}
-  backtrack(nums, cur, k, &res)
+  backtrack(nums, comb, k, &res)
   
   return res
 }
 
-func backtrack(nums, cur []int, k int, res *[][]int) {
-  if len(cur) == k {
-    curCopy := make([]int, len(cur))
-    copy(curCopy, cur)
-    *res = append(*res, curCopy)
+func backtrack(nums, comb []int, k int, res *[][]int) {
+  if len(comb) == k {
+    combCopy := make([]int, len(comb))
+    copy(combCopy, comb)
+    *res = append(*res, combCopy)
     return
   }
   
   for i := range nums {
-    if len(cur) > 0 && nums[i] < cur[len(cur)-1] {
+    if len(comb) > 0 && nums[i] < comb[len(comb)-1] {
       continue
     }
     
     nums[0], nums[i] = nums[i], nums[0]
-    backtrack(nums[1:], append(cur, nums[0]), k, res)
+    backtrack(nums[1:], append(comb, nums[0]), k, res)
     nums[0], nums[i] = nums[i], nums[0]
   }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
