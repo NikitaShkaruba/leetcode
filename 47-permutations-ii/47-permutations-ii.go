@@ -2,7 +2,7 @@
 
   Solutions:
     1. Sort + backtrack: O(n^3) time, O(n!) space
-    2. Backtrack + hashtable: O(n^3) time
+    2. Backtrack + hashtable: O(n^3) time, O(n!) space
     
   Test cases:
     - [1] : [[1]]
@@ -64,9 +64,7 @@ func permuteUnique(nums []int) [][]int {
 
 func backtrack(nums []int, perm []int, res *[][]int) {
 	if len(nums) == 0 {
-		permCopy := make([]int, len(perm))
-		copy(permCopy, perm)
-		*res = append(*res, permCopy)
+		*res = append(*res, append([]int{}, perm...))
 		return
 	}
 
@@ -76,13 +74,13 @@ func backtrack(nums []int, perm []int, res *[][]int) {
 		}
 
 		numsWithoutI := make([]int, 0, len(nums)-1)
-		for j := range nums {
-      if j == i {
+		for j, v := range nums {
+			if j == i {
 				continue
 			}
-			numsWithoutI = append(numsWithoutI, nums[j])
+			numsWithoutI = append(numsWithoutI, v)
 		}
-		
+
 		backtrack(numsWithoutI, append(perm, nums[i]), res)
 	}
 }
