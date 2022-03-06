@@ -69,7 +69,9 @@ func permuteUnique(nums []int) [][]int {
 
 func backtrack(numAmounts map[int]int, perm []int, finishedPermLen int, res *[][]int) {
 	if len(perm) == finishedPermLen {
-		*res = append(*res, append([]int{}, perm...))
+    permCopy := make([]int, len(perm))
+    copy(permCopy, perm)
+		*res = append(*res, permCopy)
 		return
 	}
 
