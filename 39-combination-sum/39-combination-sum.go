@@ -1,7 +1,7 @@
 /*
   
   Solutions:
-    1. Sort + Backtrack (Don't go into non unique): O(n*logn + (t/l)^2 * n) time, O(n + t/l) space, n is the len of candidates, l is the smallest candidate, t is the target
+    1. Sort + Backtrack (Don't go into non unique): O(n*logn + n^(t/l)) time, O(t/l) space, n is the len of candidates, l is the smallest candidate, t is the target
   
   Test cases:
   
