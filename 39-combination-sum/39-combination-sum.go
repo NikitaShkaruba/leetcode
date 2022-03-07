@@ -53,10 +53,6 @@ func backtrack(candidates, cur []int, curSum, targetSum int, res *[][]int) {
     return
   }
   
-  if curSum > targetSum {
-    return
-  }
-  
   for i, v := range candidates {
     newSum := curSum + v
     if newSum > targetSum {
