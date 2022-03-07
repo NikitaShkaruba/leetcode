@@ -46,7 +46,7 @@ func combinationSum(candidates []int, targetSum int) [][]int {
 }
 
 func backtrack(candidates, cur []int, curSum, targetSum int, res *[][]int) {
-    if curSum == targetSum {
+  if curSum == targetSum {
     curCopy := make([]int, len(cur))
     copy(curCopy, cur)
     *res = append(*res, curCopy)
