@@ -58,6 +58,11 @@ func backtrack(candidates, cur []int, curSum, targetSum int, res *[][]int) {
   }
   
   for i, v := range candidates {
-    backtrack(candidates[i:], append(cur, v), curSum + v, targetSum, res)
+    newSum := curSum + v
+    if newSum > targetSum {
+      return
+    }
+    
+    backtrack(candidates[i:], append(cur, v), newSum, targetSum, res)
   }
 }
