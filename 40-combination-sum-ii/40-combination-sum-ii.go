@@ -3,7 +3,6 @@
   Solutions:
     1. HashMap + backtracking + remove duplicates: O(a lot) time, O(a lot) space
     2. HashMap + backtracking: O(n + n^(t/l)) time, O(n + t/l + n^(t/l)) space
-    3. Bactracking (only go to the numbers that are >= than you): O(n^(t/l)) time, O(t/l + n^(t/l)) space
   
   Test cases:
     - [10,1,2,7,6,1,5] : [[1,1,6],[1,2,5],[1,7],[2,6]]
@@ -39,11 +38,11 @@ func combinationSum2(candidates []int, targetSum int) [][]int {
   }
   
   res := make([][]int, 0)
-  backtrack(candidateAmounts, nil, 0, targetSum, 0, &res)
+  backtrack(candidateAmounts, nil, 0, targetSum, &res)
   return res
 }
 
-func backtrack(candidateAmounts map[int]int, comb []int, combSum, targetSum, biggestElem int, res *[][]int) {
+func backtrack(candidateAmounts map[int]int, comb []int, combSum, targetSum int, res *[][]int) {
   if combSum == targetSum {
     *res = append(*res, append([]int{}, comb...))
     return
@@ -57,17 +56,12 @@ func backtrack(candidateAmounts map[int]int, comb []int, combSum, targetSum, big
     if c == 0 {
       continue
     }
-    if v < biggestElem {
+    if len(comb) > 0 && v < comb[len(comb)-1] {
       continue
     }
     
-    nextBiggestElem := biggestElem
-    if v > biggestElem {
-      nextBiggestElem = v
-    }
-    
     candidateAmounts[v]--
-    backtrack(candidateAmounts, append(comb, v), combSum + v, targetSum, nextBiggestElem, res)
+    backtrack(candidateAmounts, append(comb, v), combSum + v, targetSum, res)
     candidateAmounts[v]++
   }
 }
