@@ -26,43 +26,41 @@
     
     [1:1,2:1,5:1,6:1,7:1,10:1], [1]
     [1:0,2:1,5:1,6:1,7:1,10:1], [1,1]
-*/
-func combinationSum2(candidates []int, targetSum int) [][]int {
-  candidateAmounts := make(map[int]int)
-  for _, v := range candidates {
-    if _, ok := candidateAmounts[v]; !ok {
-      candidateAmounts[v] = 0
-    }
     
-    candidateAmounts[v]++
-  }
+    [1,1,2,2,5,6,7,10], 8
+         ^
+*/
+func combinationSum2(candidates []int, target int) [][]int {
+  sort.Slice(candidates, func(i, j int) bool {
+    return candidates[i] < candidates[j]
+  })
   
   res := make([][]int, 0)
-  backtrack(candidateAmounts, nil, 0, targetSum, &res)
+  backtrack(candidates, nil, target, &res)
   return res
 }
 
-func backtrack(candidateAmounts map[int]int, comb []int, combSum, targetSum int, res *[][]int) {
-  if combSum == targetSum {
+func backtrack(candidates, comb []int, target int, res *[][]int) {
+  if target == 0 {
     *res = append(*res, append([]int{}, comb...))
     return
   }
   
-  if combSum > targetSum {
+  if target < 0 {
     return
   }
   
-  for v, c := range candidateAmounts {
-    if c == 0 {
-      continue
-    }
-    if len(comb) > 0 && v < comb[len(comb)-1] {
+  for i, v := range candidates {
+    if i > 0 && candidates[i] == candidates[i-1] {
       continue
     }
     
-    candidateAmounts[v]--
-    backtrack(candidateAmounts, append(comb, v), combSum + v, targetSum, res)
-    candidateAmounts[v]++
+    newTarget := target - v
+    if newTarget < 0 {
+      break
+    }
+    
+    backtrack(candidates[i+1:], append(comb, v), newTarget, res)
   }
 }
 
