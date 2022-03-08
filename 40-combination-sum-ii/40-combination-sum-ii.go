@@ -37,7 +37,7 @@ func combinationSum2(candidates []int, target int) [][]int {
   })
   
   res := make([][]int, 0)
-  backtrack(candidates, make([]int, 0, len(candidates)), target, &res)
+  backtrack(candidates, []int{}, target, &res)
   return res
 }
 
