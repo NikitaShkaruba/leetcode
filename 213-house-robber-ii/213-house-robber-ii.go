@@ -50,9 +50,6 @@ func rob(nums []int) int {
     if len(nums) == 2 {
         return maxInt(nums[0], nums[1])
     }
-    if len(nums) == 3 {
-        return maxInt(maxInt(nums[0], nums[1]), nums[2])
-    }
 
     max1 := simpleRob(nums[:len(nums)-1])
     max2 := simpleRob(nums[1:])
