@@ -1,10 +1,10 @@
 /*
 
   Solutions:
-    - Backtracking: O(n^(n + n)) time, O(n) space (without the output space)
+    - Backtracking: O(2^2n) time, O(n) space (without the output space)
   
   Test cases:
-    - bigwordbigwordbigwordbigword: ["15","14d"]
+    - bigwordbigwordbigwordbigword: ["15","14d"] (!!!)
     - word: ["4","3d","2r1","2rd","1o2","1o1d","1or1","1ord","w3","w2d","w1r1","w1rd","wo2","wo1d","wor1","word"]
     - a: [1, a]
   
@@ -61,12 +61,3 @@ func isNumber(b byte) bool {
 func intToChars(i int) []byte {
   return []byte(strconv.Itoa(i))
 }
-
-
-
-
-
-
-
-
-
