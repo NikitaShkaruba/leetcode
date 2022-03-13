@@ -23,12 +23,16 @@ func rob(nums []int) int {
     
     withoutRobbing := nums[i-1]
     
-    if withRobbing > withoutRobbing {
-      nums[i] = withRobbing
-    } else {
-      nums[i] = withoutRobbing
-    }
+    nums[i] = max(withRobbing, withoutRobbing)
   }
   
   return nums[len(nums)-1]
+}
+
+func max(a, b int) int {
+  if a > b {
+    return a
+  } else {
+    return b
+  }
 }
