@@ -1,23 +1,14 @@
 /*
 
   Solutions:
-    - Brute force: O(n^n) time, O(n^n) space
-    - Backtrack: O(n^n) time, O(n^n) space
+    - Backtrack: O(n * 2^n) time, O(n * 2^n) space
   
   Test cases:
     - "aabaa": [["a","aba",a],["a","a","b","a","a"], ["a", "a", "b", "aa"], ["aa","b", "aa"],["aa","b", "a","a"], "aabaa"]
     - "aab": [["a","a","b"],["aa","b"]]
     - "a": [["a"]]
   
-  Testng grounds:
-    - aca b aca
-    ^ 
-                    b:aa,aa
-              /                 \                  |              |                     |
-           aba:a,a            ab:a,aa            ba:aa,a       b,a:a,aa              b,a:aa,a
-        /   \      \              
-   aabaa   aaba:,a  abaa:a,
-   
+  Testng grounds: 
     [],abba
       [a], bba
         - [a, b], ba
@@ -29,8 +20,7 @@
         - [a, bba] (X) 
       [ab], ba (X)
       [abb], a (X)
-      [abba], 
-        - (V)
+      [abba], (V)
   
 */
 func partition(s string) [][]string {
@@ -64,7 +54,7 @@ func backtrack(s string, comb []string, cache map[string]bool, res *[][]string) 
 
 func isPalindrome(s string) bool {
   l := 0
-  r := len(s)-1
+  r := len(s) - 1
   
   for l < r {
     if s[l] != s[r] {
@@ -77,20 +67,3 @@ func isPalindrome(s string) bool {
   
   return true
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
