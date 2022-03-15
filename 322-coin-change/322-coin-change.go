@@ -2,8 +2,8 @@
 
   Solutions:
     1. dp: O(a*n) time, O(a) space, where n is the len of coins, and a is the amount
-    2. dp + only store max coin elements: O(a*n) time, O(max coin elements)
-    3. sort coins + dp + only store max coin elements: O(n*log(n) + a*n) time, O(n + max coin elements)
+    2. dp + only store max coin elements (If needed): O(a*n) time, O(max coin elements)
+    3. sort coins + dp with preventive stop: O(n*log(n) + a*n) time, O(n + max coin elements) (implemented)
   
   Test cases:
     - coins = [2, 5], amount = 3
@@ -25,9 +25,13 @@
      0, 1, 2, 3
     [0,-1, 1,-1]
               ^
-                             ^
+                             
 */
 func coinChange(coins []int, amount int) int {
+  sort.Slice(coins, func(a, b int) bool {
+    return a < b
+  })
+  
   dp := make([]int, 0, amount + 1)
   for i := 0; i < amount + 1; i++ {
     dp = append(dp, -1)
