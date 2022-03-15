@@ -1,6 +1,7 @@
 /*
 
   Solutions:
+    0. Brute force backtracking: O(a^n) time, O(a) space (We can also use memoization here)
     1. dp: O(a*n) time, O(a) space, where n is the len of coins, and a is the amount
     2. dp + only store max coin elements (If needed): O(a*n) time, O(max coin elements)
     3. sort coins + dp with preventive stop: O(n*log(n) + a*n) time, O(n + max coin elements) (implemented)
