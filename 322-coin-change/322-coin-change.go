@@ -50,11 +50,12 @@ func coinChange(coins []int, amount int) int {
         continue 
       }
       
-      if dp[i] == -1 {
-        dp[i] = dp[diff] + 1
-      } else {
-        dp[i] = minInt(dp[i], dp[diff] + 1)
+      newValue := dp[diff] + 1 
+      if dp[i] != -1 {
+        newValue = minInt(dp[i], newValue)
       }
+      
+      dp[i] = newValue
     }
   }
   
