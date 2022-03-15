@@ -28,8 +28,8 @@
                              
 */
 func coinChange(coins []int, amount int) int {
-  sort.Slice(coins, func(a, b int) bool {
-    return a < b
+  sort.Slice(coins, func(i, j int) bool {
+    return coins[i] < coins[j]
   })
   
   dp := make([]int, 0, amount + 1)
@@ -43,7 +43,7 @@ func coinChange(coins []int, amount int) int {
       diff := i - c
       
       if diff < 0 {
-        continue
+        break
       }
       
       if dp[diff] == -1 {
