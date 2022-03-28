@@ -4,7 +4,6 @@
         - Backtracking: O(n^n) time, O(n^n) space
         - Sort + Backtracking: O(n^n) time, O(m^n) space, but faster then first one
         - Dynamic programming: O(t*n) time, O(t) space, where t is the target (implemented)
-        - Dynamic programming + keep only n elements: O(t*n) time, O(n) space, where t is the target
     
     Test cases:
         - nums = [1,2,3], target = 4 : 7
