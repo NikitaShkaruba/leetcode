@@ -3,6 +3,7 @@
   Solutions:
     - Recursion + cache (Top-down): O(m*n) time, O(m*n) space
     - Tabulation (Bottom-up): O(m*n) time, O(m*n) space (implemented)
+    - Tabulation + only keep top row (Bottom-up): O(m*n) time, O(n) space
   
   Test cases:
     - 3, 7 : 28
