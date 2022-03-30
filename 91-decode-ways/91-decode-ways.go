@@ -2,7 +2,8 @@
   
   Solutions:
     - Check for leading zeroes + backtracking + cache (Top down): O(n) time, O(n) space
-    - Check for leading zero + dynamic programming (Bottom up): O(n) time, O(n^2) space
+    - Dynamic programming (Bottom up): O(n) time, O(n^2) space
+    - Dynamic programming + store dp as array, not map (Bottom up): O(n) time, O(n) space (implemented)
   
   Test cases:
     - "12": 2
@@ -90,6 +91,7 @@ func numDecodings(s string) int {
   
     sum := 0
 
+    // Check last 2 digits
     cutIdx := len(subS)-2
     if cutIdx >= 0 {
       cut := subS[cutIdx:]
@@ -99,6 +101,7 @@ func numDecodings(s string) int {
       }
     }
     
+    // Check last 1 digit
     cutIdx = len(subS)-1
     if cutIdx >= 0 {
       cut := subS[cutIdx:]
@@ -108,7 +111,7 @@ func numDecodings(s string) int {
       }
     }
     
-    // zeroes at the beginning
+    // Check if input string is incorrect
     if sum == 0 {
       return 0
     }
@@ -118,21 +121,3 @@ func numDecodings(s string) int {
   
   return dp[len(s)]
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
