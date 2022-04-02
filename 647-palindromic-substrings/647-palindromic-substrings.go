@@ -53,6 +53,7 @@
 func countSubstrings(s string) int {
   count := 0
   
+  // Check odd palindromes
   for i := 0; i < len(s); i++ {
     l := i
     r := i
@@ -67,6 +68,7 @@ func countSubstrings(s string) int {
     }
   }
   
+  // Check even palindromes
   for i := 0; i < len(s) - 1; i++ {
     l := i
     r := i + 1
