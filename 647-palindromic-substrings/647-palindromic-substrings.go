@@ -2,7 +2,7 @@
 
   Solutions:
     - Brute force: O(n^3) time, O(1) space
-    - Top-down + cachning: O(n^2) time, O(n^2) space
+    - Top-down + caching: O(n^2) time, O(n^2) space
     - Middle pointer iteration: O(n^2), O(1) space (implemented) 
     
   Test cases:
