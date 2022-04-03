@@ -52,15 +52,18 @@ func findNumberOfLIS(nums []int) int {
     totalLIS := 1
     for i := 1; i < len(nums); i++ {
         for j := 0; j < i; j++ {
-            if nums[i] > nums[j] {
-                if dp[i] < dp[j]+1 {
-                    dp[i] = dp[j]+1
-                    count[i] = count[j]
-                } else if dp[i] == dp[j]+1 {
-                    count[i] += count[j]
-                }
-            } 
+            if nums[i] <= nums[j] {
+              continue
+            }
+          
+            if dp[i] < dp[j]+1 {
+                dp[i] = dp[j]+1
+                count[i] = count[j]
+            } else if dp[i] == dp[j]+1 {
+                count[i] += count[j]
+            }
         }
+      
         if longest < dp[i] {
             longest = dp[i]
             totalLIS = count[i]
