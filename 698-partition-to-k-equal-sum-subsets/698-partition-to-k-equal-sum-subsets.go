@@ -49,6 +49,7 @@ func backtrack(i int, nums []int, seenNums []bool, targetSum, currentSum, sumsNe
     return false
   }
   if currentSum == targetSum {
+    // We can try values before i again for a new subset
     return backtrack(0, nums, seenNums, targetSum, 0, sumsNeeded-1)
   }
   
@@ -58,6 +59,7 @@ func backtrack(i int, nums []int, seenNums []bool, targetSum, currentSum, sumsNe
     }
     seenNums[j] = true
     
+    // We don't need to retry adding values which are summing up bigger then target, so j + 1
     if backtrack(j + 1, nums, seenNums, targetSum, currentSum + nums[j], sumsNeeded) {
       return true
     }
