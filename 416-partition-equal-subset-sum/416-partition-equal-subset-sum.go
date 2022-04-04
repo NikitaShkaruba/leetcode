@@ -2,8 +2,7 @@
   
   Solutions:
     - Brute force: O(2^n) time, O(n) space
-    - Brute force + caching (Top-down): O(n*) time, O(2^n + n) space (will be faster with big nums length)
-    - Tabulation (Bottom-up): O() time, O() space
+    - Brute force + caching (Top-down): O(n*sum(nums)) time, O(2^n + n) space (implemented)
   
   Test cases:
     - [1,5,11,5]: 11: true
