@@ -31,20 +31,17 @@
     [1,5,11,5] target = 11
     [1]
 */
-
-type cacheKey [2]int
-
 func canPartition(nums []int) bool {
   numsSum := sliceSum(nums)
   if numsSum % 2 != 0 {
     return false
   }
   
-  cache := map[cacheKey]struct{}{}
+  cache := map[[2]int]struct{}{}
   return helper(nums, numsSum / 2, cache)
 }
 
-func helper(nums []int, target int, cache map[cacheKey]struct{}) bool {
+func helper(nums []int, target int, cache map[[2]int]struct{}) bool {
   if target == 0 {
     return true
   }
@@ -52,7 +49,7 @@ func helper(nums []int, target int, cache map[cacheKey]struct{}) bool {
     return false
   }
   
-  cacheKey := cacheKey{len(nums), target}
+  cacheKey := [2]int{len(nums), target}
   if _, ok := cache[cacheKey]; ok {
     return false
   }
