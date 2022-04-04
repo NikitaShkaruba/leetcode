@@ -2,7 +2,7 @@
   
   Solutions:
     - Brute force: O(2^n) time, O(n) space
-    - Brute force + caching (Top-down): O(2^n) time, O(2^n + n) space (will be faster with big nums length)
+    - Brute force + caching (Top-down): O(n*) time, O(2^n + n) space (will be faster with big nums length)
     - Tabulation (Bottom-up): O() time, O() space
   
   Test cases:
@@ -31,17 +31,20 @@
     [1,5,11,5] target = 11
     [1]
 */
+
+type cacheKey [2]int
+
 func canPartition(nums []int) bool {
   numsSum := sliceSum(nums)
   if numsSum % 2 != 0 {
     return false
   }
   
-  cache := map[[2]int]struct{}{}
+  cache := map[cacheKey]struct{}{}
   return helper(nums, numsSum / 2, cache)
 }
 
-func helper(nums []int, target int, cache map[[2]int]struct{}) bool {
+func helper(nums []int, target int, cache map[cacheKey]struct{}) bool {
   if target == 0 {
     return true
   }
@@ -49,7 +52,7 @@ func helper(nums []int, target int, cache map[[2]int]struct{}) bool {
     return false
   }
   
-  cacheKey := [2]int{len(nums), target}
+  cacheKey := cacheKey{len(nums), target}
   if _, ok := cache[cacheKey]; ok {
     return false
   }
